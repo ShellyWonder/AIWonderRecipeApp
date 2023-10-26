@@ -22,39 +22,39 @@
                     </div>
                     <div class="col-12">
                         <label class="form-label">Ingredient</label>
-                        <InputText placeholder="Add Ingredient" maxlength="30" @bind-Value="meal.ingredient" class="form-control mb-2"/>
+                        <InputText placeholder="Add Ingredient" maxlength="30" @bind-Value="meal.ingredient" class="form-control mb-2" />
                     </div>
-                   <div class="col-12">
-                       <button class="btn btn-outline-success">Add</button>
+                    <div class="col-12">
+                        <button class="btn btn-outline-success" @onclick="AddIngredient">Add</button>
                         <button class="btn btn-outline-danger">Clear</button>
-                   </div>
-                   <div class="col-12 mt-3">
-                       <div class="table-responsive">
-                           <table class="table table-striped">
-                               <thead>
-                                   <tr>
-                                       <th>Ingredients</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Ingredients</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     @foreach (var ingredient in ingredients)
                                     {
                                         <tr>
                                             <td>
-                                            @ingredient.Description
+                                                @ingredient.Description
                                             </td>
                                             <td class="text-end pe-3">
                                                 <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                             </td>
                                         </tr>
                                     }
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
-                   <div class="col-12">
-                       <button class="btn btn-success rounded">Generate</button>
-                   </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-success rounded">Generate</button>
+                    </div>
                 </div>
             </EditForm>
         </div>
@@ -69,8 +69,23 @@
     {
         editcontext = new(meal);
     }
-    private class Meal{
-        public string? mealtime{ get; set;}
-        public string? ingredient{ get; set;}
+    private class Meal
+    {
+        public string? mealtime { get; set; }
+        public string? ingredient { get; set; }
+    }
+    private void AddIngredient()
+    {
+        if (!string.IsNullOrEmpty(meal.ingredient))
+        {
+            ingredients.Add(new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Description = meal.ingredient
+        }
+            );
+        }
+        //clear text box
+        meal.ingredient = string.Empty;
     }
 }
