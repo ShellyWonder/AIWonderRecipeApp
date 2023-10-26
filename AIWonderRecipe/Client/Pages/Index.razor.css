@@ -1,0 +1,42 @@
+﻿.page {
+    background-image: url(images/AIChefBG2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--bs-light);
+    font-size: 1.2rem;
+}
+
+.pagestyle {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px) brightness(70%);
+    height: 100%;
+}
+main{
+    flex: 1 0 auto;
+}
+footer{
+    flex-shrink:0;
+}
+.landingPage {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+a{
+    color: var(--bs-light);
+    text-decoration: none;
+
+}
+a:visited{
+    color:var(--bs-light)
+}
+a:hover{
+    cursor:pointer;
+}

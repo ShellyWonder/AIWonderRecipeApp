@@ -1,0 +1,76 @@
+﻿@page "/createmeal"
+@using AIWonderRecipe.Shared
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>AIWonder Recipe - Create Meal</PageTitle>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h1>Create Meal</h1>
+            <EditForm EditContext="@editcontext">
+                <div class="row gy-3">
+                    <div class="col-12">
+                        <label class="form-label">MealTime:</label>
+                        <InputSelect @bind-Value="meal.mealtime" class="form-select">
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Dessert">Dessert</option>
+
+                        </InputSelect>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Ingredient</label>
+                        <InputText placeholder="Add Ingredient" maxlength="30" @bind-Value="meal.ingredient" class="form-control mb-2"/>
+                    </div>
+                   <div class="col-12">
+                       <button class="btn btn-outline-success">Add</button>
+                        <button class="btn btn-outline-danger">Clear</button>
+                   </div>
+                   <div class="col-12 mt-3">
+                       <div class="table-responsive">
+                           <table class="table table-striped">
+                               <thead>
+                                   <tr>
+                                       <th>Ingredients</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                    @foreach (var ingredient in ingredients)
+                                    {
+                                        <tr>
+                                            <td>
+                                            @ingredient.Description
+                                            </td>
+                                            <td class="text-end pe-3">
+                                                <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+                   <div class="col-12">
+                       <button class="btn btn-success rounded">Generate</button>
+                   </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private EditContext? editcontext;
+    private List<Ingredient> ingredients = new List<Ingredient>();
+    private Meal meal = new();
+    protected override void OnInitialized()
+    {
+        editcontext = new(meal);
+    }
+    private class Meal{
+        public string? mealtime{ get; set;}
+        public string? ingredient{ get; set;}
+    }
+}
