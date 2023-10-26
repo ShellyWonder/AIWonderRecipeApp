@@ -44,7 +44,7 @@
                                                 @ingredient.Description
                                             </td>
                                             <td class="text-end pe-3">
-                                                <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                                <button class="btn btn-outline-danger" @onclick="()=> RemoveIngredient(ingredient.Id)"><i class="bi bi-trash-fill"></i></button>
                                             </td>
                                         </tr>
                                     }
@@ -91,5 +91,9 @@
     private void RemoveAll()
     {
         ingredients.Clear();
+    }
+    private void RemoveIngredient(Guid id)
+    {
+        ingredients.Remove(ingredients.First(x => x.Id == id));
     }
 }
