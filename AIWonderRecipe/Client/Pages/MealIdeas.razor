@@ -1,0 +1,32 @@
+﻿@page "/mealideas"
+@using AIWonderRecipe.Shared
+
+<PageTitle>Meal Ideas</PageTitle>
+@if (loaded == true)
+{
+    <div class="container">
+        <h3 class="mt-5">Choose a meal to make!</h3>
+        <div class="list-group">
+            @foreach (var idea in ideas)
+            {
+                <button class="list-group-item list-group-item-action list-group-item-success p-2">
+                    <div class="d-flex w-100 justify-content-sm-between">
+                        <h2 class="mb-1 fw-bold">@idea.title</h2>
+                        <p class="mb-1">@idea.description</p>
+                    </div>
+                </button>
+            }
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="container">
+        <p>Loading . . .</p>
+    </div>
+}
+@code {
+    private List<Idea> ideas = new List<Idea>();
+    private bool loaded = false;
+}
