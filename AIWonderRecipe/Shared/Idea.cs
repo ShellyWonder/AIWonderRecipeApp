@@ -8,8 +8,8 @@ namespace AIWonderRecipe.Shared
 {
     public class Idea
     {
-        public int index {  get; set; }
-        public string? title { get; set; }
-        public string? description { get; set; }
+        public int Index {  get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
     }
 }

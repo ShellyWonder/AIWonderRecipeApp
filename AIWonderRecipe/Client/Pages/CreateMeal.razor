@@ -12,7 +12,7 @@
             <EditForm EditContext="@editcontext">
                 <div class="row gy-3">
                     <div class="col-12">
-                        <label class="form-label">MealTime:</label>
+                        <label class="form-label">Meal Time:</label>
                         <InputSelect @bind-Value="meal.mealtime" class="form-select">
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-12">
                         <label class="form-label">Ingredient</label>
-                        <InputText placeholder="Add Ingredient" maxlength="30" @bind-Value="meal.ingredient" class="form-control mb-2" />
+                        <InputText placeholder="Add Ingredient" maxlength="30" @bind-Value="meal.ingredient" class="form-control mb-2" @onkeyup="HandleKeyUp" />
                     </div>
                     <div class="col-12">
                         <button class="btn btn-outline-success" @onclick="AddIngredient">Add</button>
@@ -108,7 +108,14 @@
     {
         ingredients.Remove(ingredients.First(x => x.Id == id));
     }
-    private void HandleSubmit()
+    private void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddIngredient(); 
+        }
+    }
+    private void HandleSubmit() /* onclick generate btn & saves the state */
     {
         rState.MealTime = meal.mealtime;
         rState.Ingredients = ingredients;
