@@ -1,5 +1,6 @@
 ﻿@page "/mealideas"
 @using AIWonderRecipe.Shared
+@inject NavigationManager navigationManager
 
 <PageTitle>Meal Ideas</PageTitle>
 @if (loaded == true)
@@ -23,10 +24,27 @@
 else
 {
     <div class="container">
-        <p>Loading . . .</p>
+        <h3>Parameters . . .</h3>
+        <p>@rState.MealTime</p>
+        @foreach (var item in rState.Ingredients)
+        {
+                <p>@item.Description</p>
+        }
     </div>
 }
 @code {
     private List<Idea> ideas = new List<Idea>();
     private bool loaded = false;
+
+    [CascadingParameter]
+    private RecipeState rState{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (rState is null)
+        {
+            navigationManager.NavigateTo("/", forceLoad: true);
+            return;
+        }
+    }
 }
