@@ -1,0 +1,29 @@
+﻿@page "/mealrecipe/{Index:int}"
+@using AIWonderRecipe.Shared
+@using System.Text.Json
+@inject HttpClient Http
+@inject NavigationManager navigationManager
+
+<div class="container mt-5">
+<h1>Meal Recipe</h1>
+<p>Idea Index = @Index</p>
+<p>Recipe title = @title</p>
+</div>
+
+
+
+@code {
+    [CascadingParameter]
+    private RecipeState? recipeState{ get; set; }
+
+    [Parameter]
+    public int Index{ get; set; }
+
+    private string? title;
+
+    protected override void OnInitialized()
+    {
+        title = recipeState?.Ideas?.FirstOrDefault(i => i.Index == Index)?
+                                  .Title;
+    }
+}

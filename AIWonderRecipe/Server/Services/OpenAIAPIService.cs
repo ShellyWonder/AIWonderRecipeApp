@@ -46,7 +46,7 @@ namespace AIWonderRecipe.Server.Services
         {
             // describe the function we want an argument for from the AI
             Name = "CreateRecipe",
-            // this description ensures we get 5 ideas back
+            // this description ensures we get 5 ideas back--description = prompt
             Description = "Generates recipes for each idea in an array of five recipe ideas",
             Parameters = new
             {
@@ -68,12 +68,12 @@ namespace AIWonderRecipe.Server.Services
         public OpenAIAPIService(IConfiguration configuration)
         {
             _configuration = configuration;
-            var apiKey = _configuration["OpenAI:APIKey"] ?? Environment.GetEnvironmentVariable("OpenAiKey");
+            var apiKey = _configuration["OpenAi:OpenAiKey"] ?? Environment.GetEnvironmentVariable("OpenAiKey");
 
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpClient.DefaultRequestHeaders.Authorization = new("Bearer", apiKey);
 
-            _jsonOptions = new JsonSerializerOptions
+            _jsonOptions = new ()
 
             {
                 PropertyNameCaseInsensitive = true,
@@ -145,7 +145,7 @@ namespace AIWonderRecipe.Server.Services
                     };
                 }
             }
-            return ideasResult?.Data?? new List<Idea>();
+            return ideasResult?.Data ?? new List<Idea>();
         }
 
     }

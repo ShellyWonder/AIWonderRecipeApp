@@ -1,5 +1,4 @@
-﻿
-using AIWonderRecipe.Server.Data;
+﻿using AIWonderRecipe.Server.Data;
 using AIWonderRecipe.Server.Services;
 using AIWonderRecipe.Shared;
 using Microsoft.AspNetCore.Http;
@@ -12,31 +11,31 @@ namespace AIWonderRecipe.Server.Controllers
     [ApiController]
     public class RecipeController : ControllerBase
     { 
-        private readonly IOpenAIAPI _openAIService;
+        private readonly IOpenAIAPI _openAIAPIService;
 
-        public RecipeController(IOpenAIAPI openAIService)
+        public RecipeController(IOpenAIAPI openAIAPIService)
         {
-            _openAIService = openAIService;
+            _openAIAPIService = openAIAPIService;
         }
 
         [HttpPost, Route("GetRecipeIdeas")]
         public async Task<ActionResult<List<Idea>>> GetRecipeIdeas(RecipeParms recipeParms)
         {
-            //string mealtime = recipeParms.MealTime;
-            //List<string> ingredients = recipeParms.Ingredients
-            //                                      .Where(x => !string.IsNullOrEmpty(x.Description))
-            //                                      .Select(x => x.Description!)
-            //                                      .ToList();
-            //if (string.IsNullOrEmpty(mealtime))
-            //{
-            //    mealtime = "Breakfast";
-            //}
-            //var ideas = await _openAIService.CreateRecipeIdeas(mealtime, ingredients);
+            string mealtime = recipeParms.MealTime;
+            List<string> ingredients = recipeParms.Ingredients
+                                                  .Where(x => !string.IsNullOrEmpty(x.Description))
+                                                  .Select(x => x.Description!)
+                                                  .ToList();
+            if (string.IsNullOrEmpty(mealtime))
+            {
+                mealtime = "Breakfast";
+            }
+            var ideas = await _openAIAPIService.CreateRecipeIdeas(mealtime, ingredients);
 
-            //return ideas;
+            return ideas;
 
             //Testing purposes only
-            return SampleData.RecipeIdeas;
+            //return SampleData.RecipeIdeas;
         }
     }
 }

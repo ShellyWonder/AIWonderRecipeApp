@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIWonderRecipe.Server", "AIWonderRecipe\Server\AIWonderRecipe.Server.csproj", "{4B9538CF-AE99-4FA9-9349-20FD355C7A66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIWonderRecipe.Server", "AIWonderRecipe\Server\AIWonderRecipe.Server.csproj", "{4B9538CF-AE99-4FA9-9349-20FD355C7A66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIWonderRecipe.Client", "AIWonderRecipe\Client\AIWonderRecipe.Client.csproj", "{9FCFDB7E-2CCD-480B-815B-4C146B96FA08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIWonderRecipe.Client", "AIWonderRecipe\Client\AIWonderRecipe.Client.csproj", "{9FCFDB7E-2CCD-480B-815B-4C146B96FA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIWonderRecipe.Shared", "AIWonderRecipe\Shared\AIWonderRecipe.Shared.csproj", "{A0127CE2-0E32-405A-B956-28E26BEB7DF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIWonderRecipe.Shared", "AIWonderRecipe\Shared\AIWonderRecipe.Shared.csproj", "{A0127CE2-0E32-405A-B956-28E26BEB7DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
