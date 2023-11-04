@@ -13,9 +13,6 @@ namespace AIWonderRecipe.Shared
         public string[]? Instructions { get; set; }
         public string? Summary { get; set; }
 
-        public static implicit operator Recipe(Recipe v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

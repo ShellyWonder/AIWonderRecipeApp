@@ -45,6 +45,7 @@ else
         };
     protected override void OnInitialized()
     {
+        loaded = false;
         if (rState is null)
         {
             navigationManager.NavigateTo("/", forceLoad: true);
