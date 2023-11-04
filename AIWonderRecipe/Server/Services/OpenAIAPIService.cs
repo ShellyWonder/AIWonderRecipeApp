@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
 
 namespace AIWonderRecipe.Server.Services
 {
@@ -238,6 +239,30 @@ namespace AIWonderRecipe.Server.Services
                 }
             }
             return recipe?.Data;
+        }
+
+        public async Task <RecipeImage> CreateRecipeImage(string recipeTitle)
+        {
+            string url = $"{_baseUrl}images/generations";
+            string userPrompt = $"Create a resturant product shot for {recipeTitle}.";
+
+            ImageGenerationRequest request = new()
+            {
+                Prompt = userPrompt
+                
+            };
+            HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync(url, request, _jsonOptions);
+            RecipeImage? recipeImage = null;
+            try
+            {
+                recipeImage = await httpResponse.Content.ReadFromJsonAsync<RecipeImage>();
+            }
+            catch 
+            {
+
+                Console.WriteLine("Error:Recipe image could not be retrieved.");
+            }
+            return recipeImage;
         }
     }
 }

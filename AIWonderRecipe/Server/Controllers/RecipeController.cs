@@ -57,15 +57,16 @@ namespace AIWonderRecipe.Server.Controllers
             //Testing purposes only
             //return SampleData.Recipe;
         }
+        
         [HttpGet, Route("GetRecipeImage")]
         public async Task<ActionResult<RecipeImage?>> GetRecipeImage(string title)
         {
-            //var recipeImage = await _openAIAPIService.CreateRecipeImage(recipeName);
+            var recipeImage = await _openAIAPIService.CreateRecipeImage(title);
 
-            //return recipeImage;
+            return recipeImage;
 
             //Testing purposes only
-            return SampleData.RecipeImage;
+            //return SampleData.RecipeImage;
         }
     }
 }
