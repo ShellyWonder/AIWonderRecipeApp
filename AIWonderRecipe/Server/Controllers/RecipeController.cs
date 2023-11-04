@@ -21,40 +21,41 @@ namespace AIWonderRecipe.Server.Controllers
         [HttpPost, Route("GetRecipeIdeas")]
         public async Task<ActionResult<List<Idea>>> GetRecipeIdeas(RecipeParms recipeParms)
         {
-            //string mealtime = recipeParms.MealTime;
-            //List<string> ingredients = recipeParms.Ingredients
-            //                                      .Where(x => !string.IsNullOrEmpty(x.Description))
-            //                                      .Select(x => x.Description!)
-            //                                      .ToList();
-            //if (string.IsNullOrEmpty(mealtime))
-            //{
-            //    mealtime = "Breakfast";
-            //}
-            //var ideas = await _openAIAPIService.CreateRecipeIdeas(mealtime, ingredients);
+            string mealtime = recipeParms.MealTime;
+            List<string> ingredients = recipeParms.Ingredients
+                                                  .Where(x => !string.IsNullOrEmpty(x.Description))
+                                                  .Select(x => x.Description!)
+                                                  .ToList();
+            if (string.IsNullOrEmpty(mealtime))
+            {
+                mealtime = "Breakfast";
+            }
+            var ideas = await _openAIAPIService.CreateRecipeIdeas(mealtime, ingredients);
 
-            //return ideas;
+            return ideas;
 
             //Testing purposes only
-            return SampleData.RecipeIdeas;
+            //return SampleData.RecipeIdeas;
         }
         [HttpPost, Route("GetRecipe")]
         public async Task<ActionResult<Recipe?>> GetRecipe(RecipeParms recipeParms)
         {
-            //string mealtime = recipeParms.MealTime;
-            //List<string> ingredients = recipeParms.Ingredients
-            //                                      .Where(x => !string.IsNullOrEmpty(x.Description))
-            //                                      .Select(x => x.Description!)
-            //                                      .ToList();
-            //if (string.IsNullOrEmpty(mealtime))
-            //{
-            //    mealtime = "Breakfast";
-            //}
-            //var recipe = await _openAIAPIService.CreateRecipe(mealtime, ingredients);
+            List<string> ingredients = recipeParms.Ingredients
+                                                  .Where(x => !string.IsNullOrEmpty(x.Description))
+                                                  .Select(x => x.Description!)
+                                                  .ToList();
+            string? title = recipeParms.SelectedIdea;
 
-            //return recipe;
+            if (string.IsNullOrEmpty(title))
+            {
+                return BadRequest();
+            }
+           var recipe = await _openAIAPIService.CreateRecipe(title, ingredients);
+
+            return recipe;
 
             //Testing purposes only
-            return SampleData.Recipe;
+            //return SampleData.Recipe;
         }
         [HttpGet, Route("GetRecipeImage")]
         public async Task<ActionResult<RecipeImage?>> GetRecipeImage(string title)
