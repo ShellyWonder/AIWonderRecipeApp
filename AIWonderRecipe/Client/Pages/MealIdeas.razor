@@ -1,10 +1,11 @@
 ﻿@page "/mealideas"
-@using AIWonderRecipe.Shared
+@using AIWonderRecipe.Client.Shared
 @using System.Text.Json
+@using AIWonderRecipe.Shared
 @inject NavigationManager navigationManager
 @inject HttpClient Http;
 
-<PageTitle>Meal Ideas</PageTitle>
+
 @if (loaded == true)
 {
     <div class="container">
@@ -16,7 +17,7 @@
                     <div class="d-flex w-100 justify-content-sm-between">
                         <h2 class="mb-1 fw-bold">@idea.Title</h2>
                     </div>
-                        <p class="mb-1">@idea.Description</p>
+                    <p class="mb-1">@idea.Description</p>
                 </button>
             }
         </div>
@@ -25,10 +26,7 @@
 }
 else
 {
-    <div class="container">
-        <h3>Loading . . .</h3>
-
-    </div>
+    <ChefSpinner></ChefSpinner>
 }
 @code {
     private List<Idea> ideas = new List<Idea>();
@@ -85,7 +83,7 @@ else
 
             Console.WriteLine("Error: Could not fetch recipe ideas.");
         }
-        
+
     }
 
     private void GetRecipe(int index)
