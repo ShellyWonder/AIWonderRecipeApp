@@ -4,6 +4,7 @@
 @using System.Web
 @inject HttpClient Http
 @inject NavigationManager navigationManager
+@inject IJSRuntime Js
 
 @if (loaded == true)
 {
@@ -16,6 +17,10 @@
             <div class="flex-grow-1 px-3">
                 <h1 class="fw-bold">@recipe?.Title</h1>
                 <p>@recipe?.Summary</p>
+                <div class="text-end">
+                    <button class="btn btn-success d-print-none" @onclick="Print">Print</button>
+                   
+                </div>
             </div>
         </div>
         <div class="row row-cols-md-2">
@@ -98,5 +103,10 @@ else
             Console.WriteLine("Error: Could not return recipe");
         }
 
+    }
+
+    private async Task Print()
+    {
+        await Js.InvokeVoidAsync("printInvoke");
     }
 }
