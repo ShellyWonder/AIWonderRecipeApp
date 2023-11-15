@@ -27,7 +27,7 @@
             <div class="col-12 col-lg-6 mt-3">
                 <h2>Ingredients</h2>
                 <ul>
-                    @foreach (var item in recipe.Ingredients)
+                    @foreach (var item in recipe?.Ingredients!)
                     {
                        <li>@item</li> 
                     }
@@ -36,7 +36,7 @@
             <div class="col-12 col-lg-6 mt-3">
                 <h2>Instructions</h2>
                 <ul>
-                    @foreach (var item in recipe.Instructions)
+                    @foreach (var item in recipe?.Instructions!)
                     {
                         <li>@item</li>
                     }
@@ -81,7 +81,7 @@ else
 
             RecipeParms recipeParms = new RecipeParms()
                 {
-                    MealTime = rState.MealTime,
+                    MealTime = rState!.MealTime,
                     Ingredients = rState.Ingredients,
                     SelectedIdea = title
                 };

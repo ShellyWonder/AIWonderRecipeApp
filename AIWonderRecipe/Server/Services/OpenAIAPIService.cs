@@ -262,7 +262,7 @@ namespace AIWonderRecipe.Server.Services
 
                 Console.WriteLine("Error:Recipe image could not be retrieved.");
             }
-            return recipeImage;
+            return recipeImage!;
         }
     }
 }

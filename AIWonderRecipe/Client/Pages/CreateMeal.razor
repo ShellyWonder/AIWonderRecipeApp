@@ -117,7 +117,7 @@
     }
     private void HandleSubmit() /* onclick generate btn & saves the state */
     {
-        rState.MealTime = meal.mealtime;
+        rState!.MealTime = meal.mealtime!;
         rState.Ingredients = ingredients;
         navigationManager.NavigateTo("/mealideas");
     }

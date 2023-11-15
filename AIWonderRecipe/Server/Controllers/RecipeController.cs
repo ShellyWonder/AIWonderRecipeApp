@@ -34,7 +34,7 @@ namespace AIWonderRecipe.Server.Controllers
 
             return ideas;
 
-            //Testing purposes only
+            ////Testing purposes only
             //return SampleData.RecipeIdeas;
         }
         [HttpPost, Route("GetRecipe")]
@@ -50,11 +50,11 @@ namespace AIWonderRecipe.Server.Controllers
             {
                 return BadRequest();
             }
-           var recipe = await _openAIAPIService.CreateRecipe(title, ingredients);
+            var recipe = await _openAIAPIService.CreateRecipe(title, ingredients);
 
             return recipe;
 
-            //Testing purposes only
+            // //Testing purposes only
             //return SampleData.Recipe;
         }
         
@@ -65,7 +65,7 @@ namespace AIWonderRecipe.Server.Controllers
 
             return recipeImage;
 
-            //Testing purposes only
+            ////Testing purposes only
             //return SampleData.RecipeImage;
         }
     }
